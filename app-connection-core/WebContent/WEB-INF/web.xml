@@ -6,12 +6,12 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 
     <!-- servlet definition -->
     <servlet>
-        <servlet-name>InConnection</servlet-name>
-        <servlet-class>marcing.iotproject.inConnectionServlet.boundary.InConnectionServlet</servlet-class>
+        <servlet-name>AppConnection</servlet-name>
+        <servlet-class>marcing.iotproject.appConnectionServlet.boundary.AppConnectionServlet</servlet-class>
     </servlet>
     <!-- servlet mapping -->
     <servlet-mapping>
-        <servlet-name>InConnection</servlet-name>
+        <servlet-name>AppConnection</servlet-name>
         <url-pattern>/updateInfo/*</url-pattern>
     </servlet-mapping>
 

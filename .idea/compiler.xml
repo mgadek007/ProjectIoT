@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="app-connection-core" />
         <module name="in-connection-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="app-connection-core" target="1.8" />
       <module name="in-connection-core" target="1.8" />
     </bytecodeTargetLevel>
   </component>
