@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="in-connection-core:war">
+    <output-path>$PROJECT_DIR$/in-connection-core/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>in-connection-core</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="in-connection-core.war">
+      <element id="artifact" artifact-name="in-connection-core:war exploded" />
+    </root>
+  </artifact>
+</component>
