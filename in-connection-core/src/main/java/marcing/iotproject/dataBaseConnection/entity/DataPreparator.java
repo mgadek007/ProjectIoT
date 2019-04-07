@@ -1,38 +1,38 @@
 package marcing.iotproject.dataBaseConnection.entity;
 
 import com.google.common.base.Strings;
-import marcing.iotproject.AttributesDictionary;
-import marcing.iotproject.DataBlock;
-
+import marcing.iotproject.basicElements.AttributesDictionary;
+import marcing.iotproject.basicElements.DataBlock;
 
 
 public class DataPreparator {
 
-    private final String COMMA_SEPARATOR = ", ";
+    private static final String COMMA_SEPARATOR = ", ";
+    private static final String QUESTION_MARK = "?";
 
 
-    public MessageDuet convertDataBlock(DataBlock dataBlock){
-        MessageDuet result = new MessageDuet();
+    public ColumnAndValueDataPreparator convertDataBlock(DataBlock dataBlock){
+        ColumnAndValueDataPreparator result = new ColumnAndValueDataPreparator();
         return prepareResult(dataBlock, result);
     }
 
-    private MessageDuet prepareResult(DataBlock dataBlock, MessageDuet result) {
-        writeToResult(AttributesDictionary.TIME_STAMP, dataBlock.getTimestamp(), result);
-        writeToResult(AttributesDictionary.TEMP_IN, dataBlock.getTemp_in(), result);
-        writeToResult(AttributesDictionary.TEMP_OUT, dataBlock.getTemp_out(), result);
-        writeToResult(AttributesDictionary.LIGHT_INT, dataBlock.getLight_in(), result);
+    private ColumnAndValueDataPreparator prepareResult(DataBlock dataBlock, ColumnAndValueDataPreparator result) {
+        writeToResult(AttributesDictionary.TIME_STAMP, QUESTION_MARK, result);
+        writeToResult(AttributesDictionary.TEMP_IN, dataBlock.getTempIn(), result);
+        writeToResult(AttributesDictionary.TEMP_OUT, dataBlock.getTempOut(), result);
+        writeToResult(AttributesDictionary.LIGHT_INT, dataBlock.getLightIn(), result);
         writeToResult(AttributesDictionary.RED, dataBlock.getRed(), result);
         writeToResult(AttributesDictionary.BLUE, dataBlock.getBlue(), result);
         writeToResult(AttributesDictionary.GREEN, dataBlock.getGreen(), result);
-        writeToResult(AttributesDictionary.AIR_AUA_IN, dataBlock.getAir_qua_in(), result);
-        writeToResult(AttributesDictionary.AIR_QUA_OUT, dataBlock.getAir_qua_out(), result);
-        writeToResult(AttributesDictionary.SOUND_DETECTED, dataBlock.isSound_detected(), result);
-        writeToResult(AttributesDictionary.PEOPLE_INSIGHR, dataBlock.getPeople_inside(), result);
+        writeToResult(AttributesDictionary.AIR_AUA_IN, dataBlock.getAirQuaIn(), result);
+        writeToResult(AttributesDictionary.AIR_QUA_OUT, dataBlock.getAirQuaOut(), result);
+        writeToResult(AttributesDictionary.SOUND_DETECTED, dataBlock.isSoundDetected(), result);
+        writeToResult(AttributesDictionary.PEOPLE_INSIDE, dataBlock.getPeopleInside(), result);
 
         return result;
     }
 
-    private void writeToResult(String name, String value, MessageDuet result){
+    private void writeToResult(String name, String value, ColumnAndValueDataPreparator result){
         String columnName = result.getColumnName();
         String columnValue = result.getColumnValue();
         if (!Strings.isNullOrEmpty(value)){

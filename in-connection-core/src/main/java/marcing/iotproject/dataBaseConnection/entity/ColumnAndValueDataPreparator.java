@@ -1,16 +1,11 @@
 package marcing.iotproject.dataBaseConnection.entity;
 
-public class MessageDuet {
+public class ColumnAndValueDataPreparator {
 
     private String columnName;
     private String columnValue;
 
-    MessageDuet(String columnName, String columnValue){
-        this.columnName = columnName;
-        this.columnValue =columnValue;
-    }
-
-    MessageDuet(){}
+    ColumnAndValueDataPreparator(){}
 
     public String getColumnName() {
         return columnName;

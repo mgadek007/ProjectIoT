@@ -1,4 +1,4 @@
-package marcing.iotproject;
+package marcing.iotproject.basicElements;
 
 
 public class DataBlock {
@@ -25,35 +25,35 @@ public class DataBlock {
         this.id = id;
     }
 
-    public String getTimestamp() {
+    public String getTimeStamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimeStamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
-    public String getTemp_in() {
+    public String getTempIn() {
         return temp_in;
     }
 
-    public void setTemp_in(String temp_in) {
+    public void setTempIn(String temp_in) {
         this.temp_in = temp_in;
     }
 
-    public String getTemp_out() {
+    public String getTempOut() {
         return temp_out;
     }
 
-    public void setTemp_out(String temp_out) {
+    public void setTempOut(String temp_out) {
         this.temp_out = temp_out;
     }
 
-    public String getLight_in() {
+    public String getLightIn() {
         return light_in;
     }
 
-    public void setLight_in(String light_in) {
+    public void setLightIn(String light_in) {
         this.light_in = light_in;
     }
 
@@ -81,35 +81,35 @@ public class DataBlock {
         this.blue = blue;
     }
 
-    public String getAir_qua_in() {
+    public String getAirQuaIn() {
         return air_qua_in;
     }
 
-    public void setAir_qua_in(String air_qua_in) {
+    public void setAirQuaIn(String air_qua_in) {
         this.air_qua_in = air_qua_in;
     }
 
-    public String getAir_qua_out() {
+    public String getAirQuaOut() {
         return air_qua_out;
     }
 
-    public void setAir_qua_out(String air_qua_out) {
+    public void setAirQuaOut(String air_qua_out) {
         this.air_qua_out = air_qua_out;
     }
 
-    public String isSound_detected() {
+    public String isSoundDetected() {
         return sound_detected;
     }
 
-    public void setSound_detected(String sound_detected) {
+    public void setSoundDetected(String sound_detected) {
         this.sound_detected = sound_detected;
     }
 
-    public String getPeople_inside() {
+    public String getPeopleInside() {
         return people_inside;
     }
 
-    public void setPeople_inside(String people_inside) {
+    public void setPeopleInside(String people_inside) {
         this.people_inside = people_inside;
     }
 }
