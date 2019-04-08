@@ -12,7 +12,17 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     <!-- servlet mapping -->
     <servlet-mapping>
         <servlet-name>AppConnection</servlet-name>
-        <url-pattern>/updateInfo/*</url-pattern>
+        <url-pattern>/updateinfo/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserConnection</servlet-name>
+        <servlet-class>marcing.iotproject.userLoginServlet.boundary.UserLoginServlet</servlet-class>
+    </servlet>
+    <!-- servlet mapping -->
+    <servlet-mapping>
+        <servlet-name>UserConnection</servlet-name>
+        <url-pattern>/loginuser/*</url-pattern>
     </servlet-mapping>
 
 </web-app>
