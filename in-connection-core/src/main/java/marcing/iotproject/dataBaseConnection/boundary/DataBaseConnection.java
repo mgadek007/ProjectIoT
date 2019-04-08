@@ -20,6 +20,7 @@ public class DataBaseConnection extends HttpServlet {
     private static final String SPACE_CHAR = " ";
 
     private Connection conn;
+    private PreparedStatement preparedStatement;
 
     public void init(){
         try {
@@ -40,7 +41,13 @@ public class DataBaseConnection extends HttpServlet {
         String message = databaseConverter.prepareMessageForDataBase(dataBlock);
         Timestamp timeStamp = prepareTimeStamp(dataBlock.getTimeStamp());
         init();
-        loadToDatabase(message, timeStamp);
+        try {
+            loadToDatabase(message, timeStamp);
+        }catch (SQLException e){
+            log.error(PROBLEM_WITH_CONNECTION);
+            log.error(e.toString());
+            throw new DatabaseConnectionException(PROBLEM_WITH_CONNECTION);
+        }
     }
 
     private Timestamp prepareTimeStamp(String timestamp) {
@@ -48,24 +55,31 @@ public class DataBaseConnection extends HttpServlet {
         return Timestamp.valueOf(time);
     }
 
-    private void loadToDatabase(String message, Timestamp timeStamp) {
+    private void loadToDatabase(String message, Timestamp timeStamp) throws SQLException {
         try{
             log.info("**** LOAD TO DATABASE ****");
             log.info(message + timeStamp);
             executeUpdate(message, timeStamp);
-            conn.close();
+
         }catch(SQLException | NullPointerException e) {
             log.error(PROBLEM_WITH_CONNECTION);
             log.error(e.toString());
             throw new DatabaseConnectionException(PROBLEM_WITH_CONNECTION);
+        }finally {
+            conn.close();
         }
     }
 
     private void executeUpdate(String update, Timestamp timeStamp) throws SQLException {
-        PreparedStatement preparedStatement = conn.prepareStatement(update);
-        preparedStatement.setTimestamp(1, timeStamp);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
+        try {
+            preparedStatement = conn.prepareStatement(update);
+            preparedStatement.setTimestamp(1, timeStamp);
+            preparedStatement.executeUpdate();
+        }finally {
+            preparedStatement.close();
+        }
+
+
     }
 
 
