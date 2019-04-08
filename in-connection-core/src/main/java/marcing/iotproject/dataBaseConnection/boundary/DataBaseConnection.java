@@ -1,12 +1,12 @@
 package marcing.iotproject.dataBaseConnection.boundary;
 
+import com.google.common.base.Strings;
 import marcing.iotproject.basicElements.DataBlock;
 import marcing.iotproject.dataBaseConnection.control.DatabaseConverter;
 import marcing.iotproject.errors.DatabaseConnectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
+import java.time.LocalDateTime;
 import javax.servlet.http.HttpServlet;
 import java.sql.*;
 
@@ -51,7 +51,14 @@ public class DataBaseConnection extends HttpServlet {
     }
 
     private Timestamp prepareTimeStamp(String timestamp) {
-        String time = timestamp.replace(T_CHAR, SPACE_CHAR);
+        String time;
+        if (!Strings.isNullOrEmpty(timestamp)){
+            time = timestamp.replace(T_CHAR, SPACE_CHAR);
+        } else{
+            LocalDateTime now = LocalDateTime.now();
+            time = now.toString().replace(T_CHAR, SPACE_CHAR);
+
+        }
         return Timestamp.valueOf(time);
     }
 
