@@ -12,7 +12,7 @@ import java.text.MessageFormat;
 
 public class DataBaseConnectionForApp {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(DataFromBaseConverter.class);
 
     private static final String PROBLEM_WITH_CONNECTION = " Problem with connection to Database";
     private static final String SELECT_USER = "SELECT * FROM user WHERE Name = ''{0}'';";
@@ -20,6 +20,7 @@ public class DataBaseConnectionForApp {
     private DataFromBaseConverter dataFromBaseConverter = new DataFromBaseConverter();
     private Connection conn;
     private Statement statement;
+
 
     private void init() {
         try {

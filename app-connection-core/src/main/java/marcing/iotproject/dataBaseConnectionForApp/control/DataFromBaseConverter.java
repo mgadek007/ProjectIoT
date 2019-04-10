@@ -23,8 +23,6 @@ public class DataFromBaseConverter {
         }catch (SQLException e){
             throw new ConvertError(PROBLEM_WITH_CONVERT);
         }
-
-
         return user;
     }
 }

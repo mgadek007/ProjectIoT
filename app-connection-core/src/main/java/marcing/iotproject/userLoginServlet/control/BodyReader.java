@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 
 public class BodyReader {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(BodyReader.class);
 
     private static final String PROBLEM_WITH_CONVERT_INPUT_DATA = "Problem with convert user";
 

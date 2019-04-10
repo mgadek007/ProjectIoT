@@ -2,7 +2,6 @@ package marcing.iotproject.userLoginServlet.boundary;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Preconditions;
 import marcing.iotproject.dataBaseConnectionForApp.boundary.DataBaseConnectionForApp;
 import marcing.iotproject.errors.ConvertError;
 import marcing.iotproject.errors.UnauthoriseException;
@@ -12,7 +11,10 @@ import marcing.iotproject.userLoginServlet.entity.UserLoginDTO;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.WebTarget;
 import java.io.IOException;
+import java.net.URI;
 
 public class UserLoginServlet extends HttpServlet {
 
@@ -33,6 +35,7 @@ public class UserLoginServlet extends HttpServlet {
             UserLoginDTO user = bodyReader.convertJsonToUserDTO(request);
             UserLoginDTO userAfterVerification = dataBaseConnectionForApp.getUserAuthorisation(user);
             if (user.getPassword().equals(userAfterVerification.getPassword())){
+                userAfterVerification.setPassword(null);
                 response.setStatus(200);
             }else {
                 response.setStatus(401);
