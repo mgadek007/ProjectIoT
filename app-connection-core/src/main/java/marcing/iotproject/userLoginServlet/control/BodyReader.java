@@ -1,7 +1,7 @@
 package marcing.iotproject.userLoginServlet.control;
 
 import com.google.gson.*;
-import marcing.iotproject.errors.UnauthoriseException;
+import marcing.iotproject.errors.ConvertError;
 import marcing.iotproject.userLoginServlet.entity.UserLoginDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ public class BodyReader {
         } catch (JsonIOException | JsonSyntaxException e){
             log.error(PROBLEM_WITH_CONVERT_INPUT_DATA);
             log.error(e.toString());
-            throw new UnauthoriseException(PROBLEM_WITH_CONVERT_INPUT_DATA);
+            throw new ConvertError(PROBLEM_WITH_CONVERT_INPUT_DATA);
         }
         return userLoginDTO;
     }

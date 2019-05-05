@@ -19,7 +19,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     <!-- servlet mapping -->
     <servlet-mapping>
         <servlet-name>InConnection</servlet-name>
-        <url-pattern>/updateInfo/*</url-pattern>
+        <url-pattern>/updateinfo/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

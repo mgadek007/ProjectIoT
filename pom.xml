@@ -62,7 +62,14 @@
 				<version>2.9.8</version>
 			</dependency>
 
-		</dependencies>
+            <dependency>
+                <groupId>org.eclipse.paho</groupId>
+                <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+                <version>1.2.1</version>
+            </dependency>
+
+
+        </dependencies>
 	</dependencyManagement>
 
 

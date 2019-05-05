@@ -5,6 +5,7 @@ public class UserLoginDTO {
     private String user;
     private String password;
     private String token;
+    private String temp;
 
     public String getUser() {
         return user;
@@ -28,5 +29,13 @@ public class UserLoginDTO {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getTemp() {
+        return temp;
+    }
+
+    public void setTemp(String temp) {
+        this.temp = temp;
     }
 }
