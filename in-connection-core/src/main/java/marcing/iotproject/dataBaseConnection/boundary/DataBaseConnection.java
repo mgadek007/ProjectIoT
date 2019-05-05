@@ -26,7 +26,7 @@ public class DataBaseConnection extends HttpServlet {
         try {
             String dbIpAddr = "localhost";
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            conn = DriverManager.getConnection("jdbc:mysql://"+dbIpAddr+":3306/sys?serverTimezone=UTC", "root", "root123!");
+            conn = DriverManager.getConnection("jdbc:mysql://"+dbIpAddr+":3306/iot?serverTimezone=UTC", "usereitDB", "3kl3ktyk4");
 
         } catch (SQLException e) {
             log.error(PROBLEM_WITH_CONNECTION);
