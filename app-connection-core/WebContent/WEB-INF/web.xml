@@ -25,4 +25,14 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <url-pattern>/loginuser/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>RoomLogin</servlet-name>
+        <servlet-class>marcing.iotproject.roomLoginServlet.boundary.RoomLoginServlet</servlet-class>
+    </servlet>
+    <!-- servlet mapping -->
+    <servlet-mapping>
+        <servlet-name>RoomLogin</servlet-name>
+        <url-pattern>/loginrooom/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

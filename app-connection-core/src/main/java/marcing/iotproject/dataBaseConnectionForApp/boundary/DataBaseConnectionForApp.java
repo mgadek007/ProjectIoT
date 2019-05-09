@@ -4,6 +4,7 @@ import marcing.iotproject.appConnectionServlet.entity.DataBlock;
 import marcing.iotproject.dataBaseConnectionForApp.control.DataFromBaseConverter;
 import marcing.iotproject.errors.ConnectionError;
 import marcing.iotproject.errors.ConvertError;
+import marcing.iotproject.roomLoginServlet.entity.RoomLoginDTO;
 import marcing.iotproject.userLoginServlet.entity.UserLoginDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,8 @@ public class DataBaseConnectionForApp {
     private static final String PROBLEM_WITH_CONNECTION = " Problem with connection to Database";
     private static final String OUT_ROOM = "outRoom{0}";
     private static final String SELECT_USER = "SELECT * FROM user WHERE Name = ''{0}'';";
-    private static final String SELECT_DATA = "SELECT * FROM {0} ORDER BY timestamp DESC WHERE dac limit 1";
+    private static final String SELECT_DATA = "SELECT * FROM {0} ORDER BY timestamp DESC limit 1;";
+    private static final String SELECT_ROOM = "SELECT * FROM rooms WHERE IdRoom = ''{0}'';";
 
     private DataFromBaseConverter dataFromBaseConverter = new DataFromBaseConverter();
     private Connection conn;
@@ -54,7 +56,7 @@ public class DataBaseConnectionForApp {
     }
 
     public DataBlock getDataFromBase(String id){
-        String tableName = MessageFormat.format(OUT_ROOM, id);
+        String tableName = prepareQuery(OUT_ROOM, id);
         String query = prepareQuery(SELECT_DATA, tableName);
         DataBlock result;
         init();
@@ -65,6 +67,20 @@ public class DataBaseConnectionForApp {
         }
         return result;
 
+    }
+
+    public RoomLoginDTO getRoomFromDataBase(String idRoom){
+        RoomLoginDTO roomLoginDTO;
+        String query = prepareQuery(SELECT_ROOM, idRoom);
+        init();
+        try {
+            roomLoginDTO = getRoomFromDB(query);
+        }catch (SQLException | ConnectionError e){
+            log.error(PROBLEM_WITH_CONNECTION+e);
+            throw new ConvertError(PROBLEM_WITH_CONNECTION);
+        }
+
+        return roomLoginDTO;
     }
 
     private String prepareQuery(String queryFormat, String queryValue) {
@@ -136,6 +152,37 @@ public class DataBaseConnectionForApp {
             statement.close();
         }
         return data;
+    }
+
+    private RoomLoginDTO getRoomFromDB(String query) throws SQLException {
+        RoomLoginDTO result;
+        try {
+            log.info("**** GET DATA FROM DATABASE ****"+query);
+            result = executeQueryForRoom(query);
+        } catch (SQLException | NullPointerException e) {
+            log.error(PROBLEM_WITH_CONNECTION);
+            log.error(e.toString());
+            throw new ConvertError(PROBLEM_WITH_CONNECTION);
+        } finally {
+            conn.close();
+        }
+        return result;
+    }
+
+    private RoomLoginDTO executeQueryForRoom(String query) throws SQLException {
+        RoomLoginDTO room ;
+        try {
+            statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            room = dataFromBaseConverter.convertToRoomDTO(result);
+        } catch (SQLException e) {
+            log.error(PROBLEM_WITH_CONNECTION);
+            log.error(e.toString());
+            throw new ConnectionError(PROBLEM_WITH_CONNECTION);
+        } finally {
+            statement.close();
+        }
+        return room;
     }
 
 

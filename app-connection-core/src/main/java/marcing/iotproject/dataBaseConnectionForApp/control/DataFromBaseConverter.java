@@ -2,6 +2,8 @@ package marcing.iotproject.dataBaseConnectionForApp.control;
 
 import marcing.iotproject.appConnectionServlet.entity.DataBlock;
 import marcing.iotproject.errors.ConvertError;
+import marcing.iotproject.roomLoginServlet.entity.RoomLoginDTO;
+import marcing.iotproject.roomLoginServlet.entity.RoomsDictionary;
 import marcing.iotproject.userLoginServlet.entity.AttributesDictionary;
 import marcing.iotproject.appConnectionServlet.entity.AttributesDictionaryForDataBlock;
 import marcing.iotproject.userLoginServlet.entity.UserLoginDTO;
@@ -33,17 +35,17 @@ public class DataFromBaseConverter {
         DataBlock dataBlock = new DataBlock();
         try {
             while (result.next()){
-                dataBlock.setAirQuaIn(AttributesDictionaryForDataBlock.AIR_AUA_IN);
-                dataBlock.setAirQuaOut(AttributesDictionaryForDataBlock.AIR_QUA_OUT);
-                dataBlock.setBlue(AttributesDictionaryForDataBlock.BLUE);
-                dataBlock.setGreen(AttributesDictionaryForDataBlock.GREEN);
-                dataBlock.setRed(AttributesDictionaryForDataBlock.RED);
-                dataBlock.setLightIn(AttributesDictionaryForDataBlock.LIGHT_INT);
-                dataBlock.setTempIn(AttributesDictionaryForDataBlock.TEMP_IN);
-                dataBlock.setTempOut(AttributesDictionaryForDataBlock.TEMP_OUT);
-                dataBlock.setPeopleInside(AttributesDictionaryForDataBlock.PEOPLE_INSIDE);
-                dataBlock.setSoundDetected(AttributesDictionaryForDataBlock.SOUND_DETECTED);
-                dataBlock.setTimeStamp(AttributesDictionaryForDataBlock.TIME_STAMP);
+                dataBlock.setAirQuaIn(result.getString(AttributesDictionaryForDataBlock.AIR_AUA_IN));
+                dataBlock.setAirQuaOut(result.getString(AttributesDictionaryForDataBlock.AIR_QUA_OUT));
+                dataBlock.setBlue(result.getString(AttributesDictionaryForDataBlock.BLUE));
+                dataBlock.setGreen(result.getString(AttributesDictionaryForDataBlock.GREEN));
+                dataBlock.setRed(result.getString(AttributesDictionaryForDataBlock.RED));
+                dataBlock.setLightIn(result.getString(AttributesDictionaryForDataBlock.LIGHT_INT));
+                dataBlock.setTempIn(result.getString(AttributesDictionaryForDataBlock.TEMP_IN));
+                dataBlock.setTempOut(result.getString(AttributesDictionaryForDataBlock.TEMP_OUT));
+                dataBlock.setPeopleInside(result.getString(AttributesDictionaryForDataBlock.PEOPLE_INSIDE));
+                dataBlock.setSoundDetected(result.getString(AttributesDictionaryForDataBlock.SOUND_DETECTED));
+                dataBlock.setTimeStamp(result.getString(AttributesDictionaryForDataBlock.TIME_STAMP));
             }
 
         }catch (SQLException e){
@@ -51,5 +53,19 @@ public class DataFromBaseConverter {
         }
         return dataBlock;
 
+    }
+
+    public RoomLoginDTO convertToRoomDTO(ResultSet result) {
+        RoomLoginDTO room = new RoomLoginDTO();
+        try {
+            while (result.next()){
+                room.setIdRoom(result.getString(RoomsDictionary.ID_ROOM_DB));
+                room.setPassword(result.getString(RoomsDictionary.PASS_DB));
+            }
+
+        }catch (SQLException e){
+            throw new ConvertError(PROBLEM_WITH_CONVERT);
+        }
+        return room;
     }
 }

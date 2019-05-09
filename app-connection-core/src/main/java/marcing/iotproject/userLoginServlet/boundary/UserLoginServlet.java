@@ -40,6 +40,7 @@ public class UserLoginServlet extends HttpServlet {
                     response.setStatus(401);
                     userAfterVerification.setToken(null);
                     userAfterVerification.setPassword(null);
+                    userAfterVerification.setTemp(null);
                 }
                 String result = prepareJson(userAfterVerification);
                 response.getWriter().write(result);
@@ -70,6 +71,5 @@ public class UserLoginServlet extends HttpServlet {
             throw new ConvertError(ERROR_WITH_CONVERT_TO_JSON);
         }
         return result;
-
     }
 }
