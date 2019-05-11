@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseConn {
@@ -25,7 +24,7 @@ public class DataBaseConn {
         try {
             String dbIpAddr = "localhost";
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            conn = DriverManager.getConnection("jdbc:mysql://" + dbIpAddr + ":3306/sys?serverTimezone=UTC+2", "root", "root123!");
+            conn = DriverManager.getConnection("jdbc:mysql://" + dbIpAddr + ":3306/iot?serverTimezone=Europe/Warsaw", "root", "root");
 
         } catch (SQLException e) {
             log.error(PROBLEM_WITH_CONNECTION);

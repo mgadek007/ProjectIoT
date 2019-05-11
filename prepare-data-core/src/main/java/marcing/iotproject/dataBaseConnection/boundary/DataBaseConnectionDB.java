@@ -20,29 +20,31 @@ public class DataBaseConnectionDB {
     private QueryPreparator queryPreparator = new QueryPreparator();
 
     private static final String IN_ROOM = "inRoom{0}";
-    private static final String SELECT_TEMP = "SELECT {1} FROM {0} ORDER BY Timestamp DESC limit 5;";
-    private static final String PROBLEM_WITH_CONNECTION = "porblem wit connection to DB";
+    private static final String SELECT_ATTR_BY_NAME = "SELECT {1} FROM {0} WHERE {1} is not null ORDER BY Timestamp DESC limit {2};";
+    private static final String PROBLEM_WITH_CONNECTION = "Problem with connection to DB";
     private static final String T_CHAR = "T";
     private static final String SPACE_CHAR = " ";
+    private static final String ONE_VALUE = "1";
+    private static final String LIST_VALUES = "5";
 
 
     public List<String> getLastAttributeListValues(String id, String attrName) {
         String tableName = prepareQuery(IN_ROOM, id);
-        String query = prepareQuery(SELECT_TEMP, tableName, attrName);
+        String query = prepareQuery(tableName, attrName, LIST_VALUES);
         return dataBaseConn.getLastTemp(query, attrName);
     }
 
-    private String prepareQuery(String queryFormat, String tablemName, String attrName) {
-        return MessageFormat.format(queryFormat, tablemName, attrName);
+    private String prepareQuery(String tablemName, String attrName, String numberOfAttr) {
+        return MessageFormat.format(SELECT_ATTR_BY_NAME, tablemName, attrName, numberOfAttr);
     }
 
     private String prepareQuery(String queryFormat, String tablemName) {
         return MessageFormat.format(queryFormat, tablemName);
     }
 
-    public String getLastValueAttribut(String id, String attrName){
+    public String getLastValueAttribute(String id, String attrName){
         String tableName = prepareQuery(IN_ROOM, id);
-        String query = prepareQuery(SELECT_TEMP, tableName, attrName);
+        String query = prepareQuery(tableName, attrName, ONE_VALUE);
         return dataBaseConn.getLastValueAttribute(query, attrName);
     }
 

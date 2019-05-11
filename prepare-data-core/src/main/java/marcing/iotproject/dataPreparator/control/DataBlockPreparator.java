@@ -23,8 +23,8 @@ class DataBlockPreparator {
         String blue = getFinalValueOfSttribute(id, DataBlockDictionary.BLUE);
         String airIn = getFinalValueOfSttribute(id, DataBlockDictionary.AIR_AUA_IN);
         String airOut = getFinalValueOfSttribute(id, DataBlockDictionary.AIR_QUA_OUT);
-        String people = dataBaseConnectionDB.getLastValueAttribut(id, DataBlockDictionary.PEOPLE_INSIDE);
-        String sound = dataBaseConnectionDB.getLastValueAttribut(id, DataBlockDictionary.SOUND_DETECTED);
+        String people = dataBaseConnectionDB.getLastValueAttribute(id, DataBlockDictionary.PEOPLE_INSIDE);
+        String sound = dataBaseConnectionDB.getLastValueAttribute(id, DataBlockDictionary.SOUND_DETECTED);
 
         DataBlock result =new DataBlock();
         result.setId(id);
