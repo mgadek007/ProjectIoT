@@ -16,7 +16,7 @@ public class BodyConverter {
 
     private static final String PROBLEM_WITH_CONVERT_INPUT_DATA = "Problem with convert user";
 
-    public RoomLoginDTO convertJsonToRoonLoginDTO(HttpServletRequest request) throws IOException {
+    public RoomLoginDTO convertJsonToRoomLoginDTO(HttpServletRequest request) throws IOException {
         RoomLoginDTO roomLoginDTO;
         try{
             JsonElement elem = new JsonParser().parse(new InputStreamReader(request.getInputStream()));

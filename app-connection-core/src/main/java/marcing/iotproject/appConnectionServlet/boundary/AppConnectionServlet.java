@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import marcing.iotproject.appConnectionServlet.entity.DataBlock;
 import marcing.iotproject.dataBaseConnectionForApp.boundary.DataBaseConnectionForApp;
 import marcing.iotproject.errors.ConvertError;
-import marcing.iotproject.userLoginServlet.entity.UserLoginDTO;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +13,11 @@ import java.io.IOException;
 
 public class AppConnectionServlet extends HttpServlet {
 
-    private DataBaseConnectionForApp dataBaseConnectionForApp = new DataBaseConnectionForApp();
 
     private static final int BEGINING_OF_ID = 1;
     private static final String ERROR_WITH_CONVERT_TO_JSON = "Error with convert result;";
+
+    private DataBaseConnectionForApp dataBaseConnectionForApp = new DataBaseConnectionForApp();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -12,6 +12,7 @@ import java.io.IOException;
 public class RoomLoginServlet extends HttpServlet {
 
     private DataBaseConnectionForApp dataBaseConnectionForApp = new DataBaseConnectionForApp();
+
     private BodyConverter bodyConverter = new BodyConverter();
 
     private static final String SUCCESS = "Success authorisation";
@@ -19,7 +20,7 @@ public class RoomLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        RoomLoginDTO roomLoginDTO = bodyConverter.convertJsonToRoonLoginDTO(request);
+        RoomLoginDTO roomLoginDTO = bodyConverter.convertJsonToRoomLoginDTO(request);
         RoomLoginDTO roomFromDB = dataBaseConnectionForApp.getRoomFromDataBase(roomLoginDTO.getIdRoom());
         if (roomLoginDTO.getIdRoom().equals(roomFromDB.getIdRoom())
         && roomLoginDTO.getPassword().equals(roomFromDB.getPassword())){

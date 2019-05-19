@@ -16,11 +16,13 @@ import java.io.IOException;
 
 public class UserLoginServlet extends HttpServlet {
 
-    private BodyReader bodyReader = new BodyReader();
-    private DataBaseConnectionForApp dataBaseConnectionForApp = new DataBaseConnectionForApp();
-
     private static final String ERROR_WITH_CONVERT_TO_JSON = "Error with convert user to json";
     private static final String USER_DO_NOT_EXIST = "User do not exist in database.";
+
+    private BodyReader bodyReader = new BodyReader();
+
+    private DataBaseConnectionForApp dataBaseConnectionForApp = new DataBaseConnectionForApp();
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

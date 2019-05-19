@@ -14,7 +14,7 @@
 		<module>app-connection-core</module>
 		<module>application</module>
 		<module>in-connection-core</module>
-        <module>prepare-data-core</module>
+        <module>management-core</module>
 	</modules>
 
 
@@ -69,7 +69,21 @@
                 <version>1.2.1</version>
             </dependency>
 
-        </dependencies>
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<version>2.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>7.0</version>
+				<scope>provided</scope>
+			</dependency>
+
+
+		</dependencies>
 	</dependencyManagement>
 
 

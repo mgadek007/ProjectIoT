@@ -17,7 +17,7 @@ public class DataBlock {
     private String people_inside;
 
 
-    public String getId() {
+    private String getId() {
         return id;
     }
 
@@ -25,7 +25,7 @@ public class DataBlock {
         this.id = id;
     }
 
-    public String getTimeStamp() {
+    private String getTimeStamp() {
         return timestamp;
     }
 
@@ -33,7 +33,7 @@ public class DataBlock {
         this.timestamp = timestamp;
     }
 
-    public String getTempIn() {
+    private String getTempIn() {
         return temp_in;
     }
 
@@ -41,7 +41,7 @@ public class DataBlock {
         this.temp_in = temp_in;
     }
 
-    public String getTempOut() {
+    private String getTempOut() {
         return temp_out;
     }
 
@@ -49,7 +49,7 @@ public class DataBlock {
         this.temp_out = temp_out;
     }
 
-    public String getLightIn() {
+    private String getLightIn() {
         return light_in;
     }
 
@@ -57,7 +57,7 @@ public class DataBlock {
         this.light_in = light_in;
     }
 
-    public String getRed() {
+    private String getRed() {
         return red;
     }
 
@@ -65,7 +65,7 @@ public class DataBlock {
         this.red = red;
     }
 
-    public String getGreen() {
+    private String getGreen() {
         return green;
     }
 
@@ -73,7 +73,7 @@ public class DataBlock {
         this.green = green;
     }
 
-    public String getBlue() {
+    private String getBlue() {
         return blue;
     }
 
@@ -81,7 +81,7 @@ public class DataBlock {
         this.blue = blue;
     }
 
-    public String getAirQuaIn() {
+    private String getAirQuaIn() {
         return air_qua_in;
     }
 
@@ -89,7 +89,7 @@ public class DataBlock {
         this.air_qua_in = air_qua_in;
     }
 
-    public String getAirQuaOut() {
+    private String getAirQuaOut() {
         return air_qua_out;
     }
 
@@ -97,7 +97,7 @@ public class DataBlock {
         this.air_qua_out = air_qua_out;
     }
 
-    public String isSoundDetected() {
+    private String isSoundDetected() {
         return sound_detected;
     }
 
@@ -105,11 +105,27 @@ public class DataBlock {
         this.sound_detected = sound_detected;
     }
 
-    public String getPeopleInside() {
+    private String getPeopleInside() {
         return people_inside;
     }
 
     public void setPeopleInside(String people_inside) {
         this.people_inside = people_inside;
+    }
+
+    public String toString(){
+        return "DataBlock: \n"
+                + AttributesDictionaryForDataBlock.ID + ": " + getId() + ",\n"
+                + AttributesDictionaryForDataBlock.TIME_STAMP + ": " + getTimeStamp() + ",\n"
+                + AttributesDictionaryForDataBlock.TEMP_IN + ": " + getTempIn() + ",\n"
+                + AttributesDictionaryForDataBlock.TEMP_OUT + ": " + getTempOut() + ",\n"
+                + AttributesDictionaryForDataBlock.LIGHT_INT + ": " + getLightIn() + ",\n"
+                + AttributesDictionaryForDataBlock.RED + ": " + getRed() + ",\n"
+                + AttributesDictionaryForDataBlock.GREEN + ": " + getGreen() + ",\n"
+                + AttributesDictionaryForDataBlock.BLUE + ": " + getBlue() + ",\n"
+                + AttributesDictionaryForDataBlock.AIR_AUA_IN + ": " + getAirQuaIn() + ",\n"
+                + AttributesDictionaryForDataBlock.AIR_QUA_OUT + ": " + getAirQuaOut() + ",\n"
+                + AttributesDictionaryForDataBlock.PEOPLE_INSIDE + ": " + getPeopleInside() + ",\n"
+                + AttributesDictionaryForDataBlock.SOUND_DETECTED + ": " + isSoundDetected();
     }
 }

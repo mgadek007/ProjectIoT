@@ -22,7 +22,6 @@ public class DataBaseConnectionForApp {
     private static final String SELECT_DATA = "SELECT * FROM {0} ORDER BY timestamp DESC limit 1;";
     private static final String SELECT_ROOM = "SELECT * FROM rooms WHERE IdRoom = ''{0}'';";
 
-    private DataFromBaseConverter dataFromBaseConverter = new DataFromBaseConverter();
     private Connection conn;
     private Statement statement;
 
@@ -31,7 +30,7 @@ public class DataBaseConnectionForApp {
         try {
             String dbIpAddr = "localhost";
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            conn = DriverManager.getConnection("jdbc:mysql://" + dbIpAddr + ":3306/iot?serverTimezone=Europe/Warsaw", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://" + dbIpAddr + ":3306/sys?serverTimezone=Europe/Warsaw", "root", "root123!");
 
         } catch (SQLException e) {
             log.error(PROBLEM_WITH_CONNECTION);
