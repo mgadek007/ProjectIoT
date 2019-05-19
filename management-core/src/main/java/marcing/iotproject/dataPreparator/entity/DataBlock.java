@@ -25,7 +25,7 @@ public class DataBlock {
         this.id = id;
     }
 
-    public String getTimeStamp() {
+    private String getTimeStamp() {
         return timestamp;
     }
 
@@ -111,5 +111,21 @@ public class DataBlock {
 
     public void setPeopleInside(String people_inside) {
         this.people_inside = people_inside;
+    }
+
+    public String toString(){
+        return "DataBlock: \n"
+                + DataBlockDictionary.ID + ": " + getId() + ",\n"
+                + DataBlockDictionary.TIME_STAMP + ": " + getTimeStamp() + ",\n"
+                + DataBlockDictionary.TEMP_IN + ": " + getTempIn() + ",\n"
+                + DataBlockDictionary.TEMP_OUT + ": " + getTempOut() + ",\n"
+                + DataBlockDictionary.LIGHT_INT + ": " + getLightIn() + ",\n"
+                + DataBlockDictionary.RED + ": " + getRed() + ",\n"
+                + DataBlockDictionary.GREEN + ": " + getGreen() + ",\n"
+                + DataBlockDictionary.BLUE + ": " + getBlue() + ",\n"
+                + DataBlockDictionary.AIR_AUA_IN + ": " + getAirQuaIn() + ",\n"
+                + DataBlockDictionary.AIR_QUA_OUT + ": " + getAirQuaOut() + ",\n"
+                + DataBlockDictionary.PEOPLE_INSIDE + ": " + getPeopleInside() + ",\n"
+                + DataBlockDictionary.SOUND_DETECTED + ": " + isSoundDetected();
     }
 }

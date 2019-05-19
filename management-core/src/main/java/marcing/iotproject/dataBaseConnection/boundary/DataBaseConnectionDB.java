@@ -62,7 +62,7 @@ public class DataBaseConnectionDB {
 
     private Timestamp prepareTimeStamp() {
         LocalDateTime now = LocalDateTime.now();
-         String time = now.toString().replace(T_CHAR, SPACE_CHAR);
+        String time = now.toString().replace(T_CHAR, SPACE_CHAR);
         return Timestamp.valueOf(time);
     }
 }

@@ -2,7 +2,7 @@ package marcing.iotproject.dataPreparator.entity;
 
 public class DataBlockDictionary {
 
-     public static final String ID = "id";
+     static final String ID = "id";
      public static final String TIME_STAMP = "timestamp";
      public static final String TEMP_IN = "temp_in";
      public static final String TEMP_OUT = "temp_out";
