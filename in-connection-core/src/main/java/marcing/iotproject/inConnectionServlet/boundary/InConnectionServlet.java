@@ -2,11 +2,13 @@ package marcing.iotproject.inConnectionServlet.boundary;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
+import marcing.iotproject.basicElements.AttributesDictionary;
 import marcing.iotproject.basicElements.DataBlock;
 import marcing.iotproject.dataBaseConnection.boundary.DataBaseConnection;
 import marcing.iotproject.errors.ConvertErrorException;
 import marcing.iotproject.errors.DatabaseConnectionException;
 import marcing.iotproject.inConnectionServlet.control.BodyReader;
+import marcing.iotproject.inConnectionServlet.control.ManagementCoreApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,13 +19,16 @@ import java.io.IOException;
 
 public class InConnectionServlet extends HttpServlet {
 
-    private BodyReader bodyReader = new BodyReader();
-    private DataBaseConnection dataBaseConnection = new DataBaseConnection();
     private final Logger log = LoggerFactory.getLogger(getClass());
-
 
     private static final String SUCCESS_MESSAGE = "Data was register correctly.";
     private static final String ERROR_ROOM_ID = "Room ID must be set";
+
+    private BodyReader bodyReader = new BodyReader();
+
+    private DataBaseConnection dataBaseConnection = new DataBaseConnection();
+
+    private ManagementCoreApi managementCoreApi = new ManagementCoreApi();
 
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -33,11 +38,12 @@ public class InConnectionServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            DataBlock dataBlock = bodyReader.convertJsonToDataBlock(request);
+            DataBlock dataBlock = bodyReader.convertJsonToDataBlock(request.getInputStream());
             log.debug(dataBlock.toString());
             Preconditions.checkArgument(!Strings.isNullOrEmpty(dataBlock.getId()), ERROR_ROOM_ID);
             dataBaseConnection.loadDataToDataBase(dataBlock);
-
+            log.info(SUCCESS_MESSAGE);
+            managementCoreApi.prepareData(dataBlock.getId());
             response.setStatus(200);
             response.getOutputStream().print(SUCCESS_MESSAGE);
 
@@ -51,10 +57,7 @@ public class InConnectionServlet extends HttpServlet {
             }else {
                 response.setStatus(500);
             }
-
         }
-
-
     }
 
 }

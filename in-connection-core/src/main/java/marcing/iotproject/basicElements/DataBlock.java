@@ -112,4 +112,20 @@ public class DataBlock {
     public void setPeopleInside(String people_inside) {
         this.people_inside = people_inside;
     }
+
+    public String toString(){
+        return "DataBlock: \n"
+                + AttributesDictionary.ID + ": " + getId() + ",\n"
+                + AttributesDictionary.TIME_STAMP + ": " + getTimeStamp() + ",\n"
+                + AttributesDictionary.TEMP_IN + ": " + getTempIn() + ",\n"
+                + AttributesDictionary.TEMP_OUT + ": " + getTempOut() + ",\n"
+                + AttributesDictionary.LIGHT_INT + ": " + getLightIn() + ",\n"
+                + AttributesDictionary.RED + ": " + getRed() + ",\n"
+                + AttributesDictionary.GREEN + ": " + getGreen() + ",\n"
+                + AttributesDictionary.BLUE + ": " + getBlue() + ",\n"
+                + AttributesDictionary.AIR_AUA_IN + ": " + getAirQuaIn() + ",\n"
+                + AttributesDictionary.AIR_QUA_OUT + ": " + getAirQuaOut() + ",\n"
+                + AttributesDictionary.PEOPLE_INSIDE + ": " + getPeopleInside() + ",\n"
+                + AttributesDictionary.SOUND_DETECTED + ": " + isSoundDetected();
+    }
 }

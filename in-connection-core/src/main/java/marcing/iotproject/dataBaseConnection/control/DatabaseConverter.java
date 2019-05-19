@@ -8,10 +8,11 @@ import java.text.MessageFormat;
 
 public class DatabaseConverter {
 
-    private DataPreparator dataPreparator = new DataPreparator();
 
     private static final String SUFFIX_IN = "inRoom{0}";
     private static final String INSERT_COMMAND = "INSERT INTO {0} ({1}) VALUES ({2})";
+
+    private DataPreparator dataPreparator = new DataPreparator();
 
     public String prepareMessageForDataBase(DataBlock dataBlock) {
         String tableName = prepareTableName(dataBlock.getId());
