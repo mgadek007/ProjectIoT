@@ -20,6 +20,7 @@ public class DataBaseConnectionDB {
     private QueryPreparator queryPreparator = new QueryPreparator();
 
     private static final String IN_ROOM = "inRoom{0}";
+    private static final String OUT_ROOM = "outRoom{0}";
     private static final String SELECT_ATTR_BY_NAME = "SELECT {1} FROM {0} WHERE {1} is not null ORDER BY Timestamp DESC limit {2};";
     private static final String PROBLEM_WITH_CONNECTION = "Problem with connection to DB";
     private static final String T_CHAR = "T";
@@ -42,8 +43,13 @@ public class DataBaseConnectionDB {
         return MessageFormat.format(queryFormat, tablemName);
     }
 
-    public String getLastValueAttribute(String id, String attrName){
-        String tableName = prepareQuery(IN_ROOM, id);
+    public String getLastValueAttribute(String id, String attrName, boolean isOutRoom){
+        String tableName;
+        if (isOutRoom){
+            tableName = prepareQuery(OUT_ROOM, id);
+        }else {
+            tableName = prepareQuery(IN_ROOM, id);
+        }
         String query = prepareQuery(tableName, attrName, ONE_VALUE);
         return dataBaseConn.getLastValueAttribute(query, attrName);
     }

@@ -36,9 +36,8 @@ public class QueryPreparator {
         writeToResult(DataBlockDictionary.TEMP_IN, dataBlock.getTempIn(), result);
         writeToResult(DataBlockDictionary.TEMP_OUT, dataBlock.getTempOut(), result);
         writeToResult(DataBlockDictionary.LIGHT_INT, dataBlock.getLightIn(), result);
-        writeToResult(DataBlockDictionary.RED, dataBlock.getRed(), result);
-        writeToResult(DataBlockDictionary.BLUE, dataBlock.getBlue(), result);
-        writeToResult(DataBlockDictionary.GREEN, dataBlock.getGreen(), result);
+        writeToResult(DataBlockDictionary.IS_CLIME_ON, dataBlock.getIsClimeOn(), result);
+        writeToResult(DataBlockDictionary.IS_WINDOW_OPEN, dataBlock.getIsWindowOpen(), result);
         writeToResult(DataBlockDictionary.AIR_AUA_IN, dataBlock.getAirQuaIn(), result);
         writeToResult(DataBlockDictionary.AIR_QUA_OUT, dataBlock.getAirQuaOut(), result);
         writeToResult(DataBlockDictionary.SOUND_DETECTED, dataBlock.isSoundDetected(), result);

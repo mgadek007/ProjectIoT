@@ -18,27 +18,24 @@ class DataBlockPreparator {
         String tempIn = getFinalValueOfSttribute(id, DataBlockDictionary.TEMP_IN);
         String tempOut = getFinalValueOfSttribute(id, DataBlockDictionary.TEMP_OUT);
         String light = getFinalValueOfSttribute(id, DataBlockDictionary.LIGHT_INT);
-        String red = getFinalValueOfSttribute(id, DataBlockDictionary.RED);
-        String green = getFinalValueOfSttribute(id, DataBlockDictionary.GREEN);
-        String blue = getFinalValueOfSttribute(id, DataBlockDictionary.BLUE);
         String airIn = getFinalValueOfSttribute(id, DataBlockDictionary.AIR_AUA_IN);
         String airOut = getFinalValueOfSttribute(id, DataBlockDictionary.AIR_QUA_OUT);
-        String people = dataBaseConnectionDB.getLastValueAttribute(id, DataBlockDictionary.PEOPLE_INSIDE);
-        String sound = dataBaseConnectionDB.getLastValueAttribute(id, DataBlockDictionary.SOUND_DETECTED);
+        String isWindowOpen = dataBaseConnectionDB.getLastValueAttribute(id, DataBlockDictionary.IS_WINDOW_OPEN, false);
+        String isClimeOn = dataBaseConnectionDB.getLastValueAttribute(id, DataBlockDictionary.IS_CLIME_ON, false);
+        String people = dataBaseConnectionDB.getLastValueAttribute(id, DataBlockDictionary.PEOPLE_INSIDE, false);
+        String sound = dataBaseConnectionDB.getLastValueAttribute(id, DataBlockDictionary.SOUND_DETECTED, false);
 
         DataBlock result =new DataBlock();
         result.setId(id);
         result.setTempIn(tempIn);
         result.setTempOut(tempOut);
         result.setLightIn(light);
-        result.setRed(red);
-        result.setGreen(green);
-        result.setBlue(blue);
+        result.setIsWindowOpen(isWindowOpen);
+        result.setIsClimeOn(isClimeOn);
         result.setAirQuaIn(airIn);
         result.setAirQuaOut(airOut);
         result.setPeopleInside(people);
         result.setSoundDetected(sound);
-
         return result;
 
     }
@@ -68,4 +65,6 @@ class DataBlockPreparator {
                 .sum();
         return sum/size;
     }
+
+
 }
