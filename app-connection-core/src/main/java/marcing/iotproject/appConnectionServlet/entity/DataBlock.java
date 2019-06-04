@@ -8,9 +8,8 @@ public class DataBlock {
     private String temp_in;
     private String temp_out;
     private String light_in;
-    private String red;
-    private String green;
-    private String blue;
+    private String isClimeOn;
+    private String isWindowOpen;
     private String air_qua_in;
     private String air_qua_out;
     private String sound_detected;
@@ -57,30 +56,6 @@ public class DataBlock {
         this.light_in = light_in;
     }
 
-    private String getRed() {
-        return red;
-    }
-
-    public void setRed(String red) {
-        this.red = red;
-    }
-
-    private String getGreen() {
-        return green;
-    }
-
-    public void setGreen(String green) {
-        this.green = green;
-    }
-
-    private String getBlue() {
-        return blue;
-    }
-
-    public void setBlue(String blue) {
-        this.blue = blue;
-    }
-
     private String getAirQuaIn() {
         return air_qua_in;
     }
@@ -120,12 +95,25 @@ public class DataBlock {
                 + AttributesDictionaryForDataBlock.TEMP_IN + ": " + getTempIn() + ",\n"
                 + AttributesDictionaryForDataBlock.TEMP_OUT + ": " + getTempOut() + ",\n"
                 + AttributesDictionaryForDataBlock.LIGHT_INT + ": " + getLightIn() + ",\n"
-                + AttributesDictionaryForDataBlock.RED + ": " + getRed() + ",\n"
-                + AttributesDictionaryForDataBlock.GREEN + ": " + getGreen() + ",\n"
-                + AttributesDictionaryForDataBlock.BLUE + ": " + getBlue() + ",\n"
                 + AttributesDictionaryForDataBlock.AIR_AUA_IN + ": " + getAirQuaIn() + ",\n"
                 + AttributesDictionaryForDataBlock.AIR_QUA_OUT + ": " + getAirQuaOut() + ",\n"
                 + AttributesDictionaryForDataBlock.PEOPLE_INSIDE + ": " + getPeopleInside() + ",\n"
                 + AttributesDictionaryForDataBlock.SOUND_DETECTED + ": " + isSoundDetected();
+    }
+
+    public String getIsWindowOpen() {
+        return isWindowOpen;
+    }
+
+    public void setIsWindowOpen(String isWindowOpen) {
+        this.isWindowOpen = isWindowOpen;
+    }
+
+    public String getIsClimeOn() {
+        return isClimeOn;
+    }
+
+    public void setIsClimeOn(String isClimeOn) {
+        this.isClimeOn = isClimeOn;
     }
 }

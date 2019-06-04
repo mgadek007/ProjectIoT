@@ -37,15 +37,14 @@ public class DataFromBaseConverter {
             while (result.next()){
                 dataBlock.setAirQuaIn(result.getString(AttributesDictionaryForDataBlock.AIR_AUA_IN));
                 dataBlock.setAirQuaOut(result.getString(AttributesDictionaryForDataBlock.AIR_QUA_OUT));
-                dataBlock.setBlue(result.getString(AttributesDictionaryForDataBlock.BLUE));
-                dataBlock.setGreen(result.getString(AttributesDictionaryForDataBlock.GREEN));
-                dataBlock.setRed(result.getString(AttributesDictionaryForDataBlock.RED));
                 dataBlock.setLightIn(result.getString(AttributesDictionaryForDataBlock.LIGHT_INT));
                 dataBlock.setTempIn(result.getString(AttributesDictionaryForDataBlock.TEMP_IN));
                 dataBlock.setTempOut(result.getString(AttributesDictionaryForDataBlock.TEMP_OUT));
                 dataBlock.setPeopleInside(result.getString(AttributesDictionaryForDataBlock.PEOPLE_INSIDE));
                 dataBlock.setSoundDetected(result.getString(AttributesDictionaryForDataBlock.SOUND_DETECTED));
                 dataBlock.setTimeStamp(result.getString(AttributesDictionaryForDataBlock.TIME_STAMP));
+                dataBlock.setIsClimeOn(result.getString(AttributesDictionaryForDataBlock.IS_CLIME_ON));
+                dataBlock.setIsWindowOpen(result.getString(AttributesDictionaryForDataBlock.IS_WINDOW_OPEN));
             }
 
         }catch (SQLException e){
