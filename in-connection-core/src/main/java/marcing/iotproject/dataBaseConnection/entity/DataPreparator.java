@@ -21,9 +21,8 @@ public class DataPreparator {
         writeToResult(AttributesDictionary.TEMP_IN, dataBlock.getTempIn(), result);
         writeToResult(AttributesDictionary.TEMP_OUT, dataBlock.getTempOut(), result);
         writeToResult(AttributesDictionary.LIGHT_INT, dataBlock.getLightIn(), result);
-        writeToResult(AttributesDictionary.RED, dataBlock.getRed(), result);
-        writeToResult(AttributesDictionary.BLUE, dataBlock.getBlue(), result);
-        writeToResult(AttributesDictionary.GREEN, dataBlock.getGreen(), result);
+        writeToResult(AttributesDictionary.IS_CLIME_ON, dataBlock.getIsClimeOn(), result);
+        writeToResult(AttributesDictionary.IS_WINDOW_OPEN, dataBlock.getIsWindowOpen(), result);
         writeToResult(AttributesDictionary.AIR_AUA_IN, dataBlock.getAirQuaIn(), result);
         writeToResult(AttributesDictionary.AIR_QUA_OUT, dataBlock.getAirQuaOut(), result);
         writeToResult(AttributesDictionary.SOUND_DETECTED, dataBlock.isSoundDetected(), result);
