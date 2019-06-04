@@ -39,7 +39,7 @@ public class RoomLoginServlet extends HttpServlet {
                 response.getOutputStream().print(stringResult);
             }else {
                 response.setStatus(401);
-                response.getOutputStream().print(FAILED);
+                response.getOutputStream().print(MessageFormat.format(FAILED, roomLoginDTO.getIdRoom()));
                 LOG.warn(MessageFormat.format(FAILED, roomLoginDTO.getIdRoom()));
             }
         }catch (Exception e){
