@@ -10,6 +10,7 @@ import marcing.iotproject.userLoginServlet.entity.UserLoginDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DataFromBaseConverter {
 
@@ -66,5 +67,18 @@ public class DataFromBaseConverter {
             throw new ConvertError(PROBLEM_WITH_CONVERT);
         }
         return room;
+    }
+
+    public ArrayList getList(ResultSet result) {
+        ArrayList list = new ArrayList();
+        try {
+            while (result.next()){
+                list.add(result.getString(RoomsDictionary.ID_ROOM_DB));
+            }
+        }catch (SQLException e){
+            throw new ConvertError(PROBLEM_WITH_CONVERT);
+
+        }
+        return list;
     }
 }

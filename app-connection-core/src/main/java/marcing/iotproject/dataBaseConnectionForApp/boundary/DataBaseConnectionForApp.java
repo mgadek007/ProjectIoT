@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 
 public class DataBaseConnectionForApp {
 
@@ -21,6 +22,8 @@ public class DataBaseConnectionForApp {
     private static final String SELECT_USER = "SELECT * FROM user WHERE Name = ''{0}'';";
     private static final String SELECT_DATA = "SELECT * FROM {0} ORDER BY timestamp DESC limit 1;";
     private static final String SELECT_ROOM = "SELECT * FROM rooms WHERE IdRoom = ''{0}'';";
+    private static final String UPDATE_PASS_TO_ROOM = "UPDATE rooms SET Password = ''{0}'' WHERE IdRoom = ''{1}'';";
+    private static final String GET_LIST = "SELECT IdRoom FROM rooms;";
 
     private Connection conn;
     private Statement statement;
@@ -85,6 +88,10 @@ public class DataBaseConnectionForApp {
 
     private String prepareQuery(String queryFormat, String queryValue) {
         return MessageFormat.format(queryFormat, queryValue);
+    }
+
+    private String prepareQuery(String queryFormat, String queryValue, String seoundQueryValue) {
+        return MessageFormat.format(queryFormat, queryValue, seoundQueryValue);
     }
 
 
@@ -185,5 +192,44 @@ public class DataBaseConnectionForApp {
         return room;
     }
 
+    public void changePassToRoom(RoomLoginDTO room){
+        String query = prepareQuery(UPDATE_PASS_TO_ROOM, room.getPassword(), room.getIdRoom());
+        init();
+        try {
+            executeQueryForPassToRoom(query);
+        }catch (SQLException | ConnectionError e){
+            log.error(PROBLEM_WITH_CONNECTION+e);
+            throw new ConvertError(PROBLEM_WITH_CONNECTION);
+        }
+    }
 
+    private void executeQueryForPassToRoom(String query) throws SQLException {
+        try {
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            log.error(PROBLEM_WITH_CONNECTION);
+            log.error(e.toString());
+            throw new ConnectionError(PROBLEM_WITH_CONNECTION);
+        } finally {
+            statement.close();
+        }
+    }
+
+    public ArrayList getListRoom() throws SQLException{
+        ArrayList list;
+        init();
+        try {
+            statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(GET_LIST);
+            list = dataFromBaseConverter.getList(result);
+        }catch (SQLException e){
+            log.error(PROBLEM_WITH_CONNECTION);
+            log.error(e.toString());
+            throw new ConnectionError(PROBLEM_WITH_CONNECTION);
+        }finally {
+            statement.close();
+        }
+        return list;
+    }
 }

@@ -32,7 +32,28 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     <!-- servlet mapping -->
     <servlet-mapping>
         <servlet-name>RoomLogin</servlet-name>
-        <url-pattern>/loginrooom/*</url-pattern>
+        <url-pattern>/loginroom/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChangePass</servlet-name>
+        <servlet-class>marcing.iotproject.changeRoomPass.boundary.ChangePassRoomServlet</servlet-class>
+    </servlet>
+    <!-- servlet mapping -->
+    <servlet-mapping>
+        <servlet-name>ChangePass</servlet-name>
+        <url-pattern>/changepass/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Roomlist</servlet-name>
+        <servlet-class>marcing.iotproject.getListRoom.boundary.GetListRoom</servlet-class>
+    </servlet>
+    <!-- servlet mapping -->
+    <servlet-mapping>
+        <servlet-name>Roomlist</servlet-name>
+        <url-pattern>/getroomlist/*</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
