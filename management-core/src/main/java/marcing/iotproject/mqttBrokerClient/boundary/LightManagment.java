@@ -47,7 +47,7 @@ public class LightManagment implements MqttCallbackExtended {
             options.setPassword(ConnectionMqttDictionary.MQTT_PASSWORD.toCharArray());
             options.setAutomaticReconnect(true);
             options.getDebug();
-            options.setKeepAliveInterval(999999999);
+            options.setKeepAliveInterval(120);
             options.setCleanSession(true);
             client.connect(options);
             client.setCallback(this);
@@ -62,7 +62,7 @@ public class LightManagment implements MqttCallbackExtended {
 
     private void sendDataForApp(String message){
         MqttMessage messageForApp = new MqttMessage(message.getBytes());
-        messageForApp.setQos(0);
+        messageForApp.setQos(2);
         LOG.debug(MessageFormat.format(TRY_PUBLISH_MESSAGE, message));
         try {
             client.publish(ConnectionMqttDictionary.HARDWARE_LIGHT_TOPIC_MANAGEMENT, messageForApp);

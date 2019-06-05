@@ -65,6 +65,4 @@ class DataBlockPreparator {
                 .sum();
         return sum/size;
     }
-
-
 }

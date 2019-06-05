@@ -54,7 +54,7 @@ public class InConnectionMqttClient implements MqttCallbackExtended {
             options.setAutomaticReconnect(true);
             options.setCleanSession(true);
             options.getDebug();
-            options.setKeepAliveInterval(999999999);
+            options.setKeepAliveInterval(60);
             client.connect(options);
             client.setCallback(this);
             client.subscribe(ConnectionMqttDictionary.IN_CONN_TOPIC);
@@ -104,7 +104,7 @@ public class InConnectionMqttClient implements MqttCallbackExtended {
 
     private void sendMessage(String topic, String message) {
         MqttMessage mqttMessage = new MqttMessage(message.getBytes());
-        mqttMessage.setQos(0);
+        mqttMessage.setQos(2);
         try {
             client.publish(topic, mqttMessage);
         } catch (MqttException e) {

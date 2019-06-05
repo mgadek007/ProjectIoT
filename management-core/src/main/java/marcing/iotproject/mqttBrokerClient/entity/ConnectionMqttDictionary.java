@@ -7,7 +7,6 @@ public class ConnectionMqttDictionary {
 
     public static final String APP_TOPIC = "app/updateinfo/{0}";
     public static final String PREPATE_DATA_TOPIC = "menagement/preparedata";
-    public static final String MANAGEMENT_TOPIC =  "menagement/manageroom";
     public static final String MANAGENENT_LIGHT_TOPIC = "management/lightmanage";
     public static final String HARDWARE_TOPIC_MANAGEMENT = "hardware/management";
     public static final String HARDWARE_LIGHT_TOPIC_MANAGEMENT = "hardware/management/light";

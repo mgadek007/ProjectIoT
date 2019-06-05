@@ -22,7 +22,7 @@ public class ManagerServer implements MqttCallbackExtended {
     private static final String PROBLEM_WITH_INIT = "Problem with init VoteManagerServer";
     private static final String INIT_CLASS_CORRECTLY = "Inicialization class was done correctly";
     private static final String CONNECTION_LOST = "Connection lost";
-    private static final int SEND_DATA = 2;
+    private static final int SEND_DATA = 1;
     private int TRY_SEND_DATA = 0;
 
     private static final String TRY_PUBLISH_MESSAGE = "Try publish a message: {0}";
@@ -52,7 +52,7 @@ public class ManagerServer implements MqttCallbackExtended {
             options.setUserName(ConnectionMqttDictionary.MQTT_USER);
             options.setPassword(ConnectionMqttDictionary.MQTT_PASSWORD.toCharArray());
             options.setAutomaticReconnect(true);
-            options.setKeepAliveInterval(999999999);
+            options.setKeepAliveInterval(120);
             options.setCleanSession(true);
             options.getDebug();
             client.connect(options);
@@ -98,7 +98,7 @@ public class ManagerServer implements MqttCallbackExtended {
 
     public void sendData(String topic, String message){
         MqttMessage messageForApp = new MqttMessage(message.getBytes());
-        messageForApp.setQos(0);
+        messageForApp.setQos(2);
         LOG.debug(MessageFormat.format(TRY_PUBLISH_MESSAGE, message));
         try {
             client.publish(topic, messageForApp);
