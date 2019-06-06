@@ -1,11 +1,15 @@
 package marcing.iotproject.mqttBrokerClient.boundary;
 
+import marcing.iotproject.manageVoting.control.VotingStorage;
+import marcing.iotproject.manageVoting.entity.VotingObject;
+import marcing.iotproject.mqttBrokerClient.control.GetDataFromMessage;
 import marcing.iotproject.mqttBrokerClient.entity.ConnectionMqttDictionary;
 import org.eclipse.paho.client.mqttv3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Startup;
+import javax.faces.convert.ConverterException;
 import javax.inject.Singleton;
 import java.text.MessageFormat;
 import java.util.Random;
@@ -22,11 +26,20 @@ public class VoteManagerMqtt implements MqttCallbackExtended {
     private static final String PUBLISHED_MESSAGE = "Message published correctly";
     private static final String PUBLISHE_MESSAGE_FAILED = "Client no publish a message";
     private static final String TRY_PUBLISH_MESSAGE = "Try publish a message: {0}";
+    private static final String START_PROCESS_VOTE = "Start process vote";
+    private static final String SUCCESS_PROCESS = "Success processing vote";
+    private static final String FAILED_PROCESS = "Failed processing vote";
+
+
+
+    private static VotingStorage votingStorage= VotingStorage.getInstance();
+
+    private GetDataFromMessage dataGetter = new GetDataFromMessage();
 
 
     private MqttClient client;
 
-    private VoteManagerMqtt(){
+    public VoteManagerMqtt(){
             init();
         }
 
@@ -44,6 +57,7 @@ public class VoteManagerMqtt implements MqttCallbackExtended {
             client.setCallback(this);
             client.subscribe(ConnectionMqttDictionary.VOTE_TOPIC);
             LOG.info(INIT_CLASS_CORRECTLY);
+
         } catch (MqttException e) {
             LOG.error(PROBLEM_WITH_INIT, e);
         }
@@ -57,8 +71,13 @@ public class VoteManagerMqtt implements MqttCallbackExtended {
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) {
-        if (ConnectionMqttDictionary.VOTE_TOPIC.equals(s)){
-            LOG.info("bahb");
+        try {
+            LOG.info(START_PROCESS_VOTE);
+            VotingObject vote = dataGetter.convertJsonToVote(mqttMessage);
+            votingStorage.applyVote(vote);
+            LOG.info(SUCCESS_PROCESS);
+        }catch (Exception e){
+            LOG.error(FAILED_PROCESS, e);
         }
     }
 

@@ -3,6 +3,8 @@ package marcing.iotproject.mqttBrokerClient.control;
 import com.google.gson.*;
 import marcing.iotproject.dataPreparator.entity.DataBlock;
 import marcing.iotproject.errors.ConvertError;
+import marcing.iotproject.manageVoting.entity.VotingObject;
+import marcing.iotproject.managementRoom.entity.ManagementDTO;
 import marcing.iotproject.managementRoom.entity.MnageLightDTO;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.slf4j.Logger;
@@ -22,18 +24,18 @@ public class GetDataFromMessage {
         return new String(message.getPayload(), UTF_8);
     }
 
-    public DataBlock convertJsonToDataBlock(MqttMessage request) {
-        DataBlock dataBlock;
+    public VotingObject convertJsonToVote(MqttMessage request) {
+        VotingObject vote;
         try{
             String elem =  getId(request);
             Gson gson  = new GsonBuilder().create();
-            dataBlock = gson.fromJson(elem, DataBlock.class);
+            vote = gson.fromJson(elem, VotingObject.class);
         } catch (JsonIOException | JsonSyntaxException e){
             log.error(PROBLEM_WITH_CONVERT_INPUT_DATA);
             log.error(e.toString());
             throw new ConvertError(PROBLEM_WITH_CONVERT_INPUT_DATA);
         }
-        return dataBlock;
+        return vote;
     }
 
     public MnageLightDTO convertJsonToManageLisght(MqttMessage request) {
@@ -42,6 +44,20 @@ public class GetDataFromMessage {
             String elem =  getId(request);
             Gson gson  = new GsonBuilder().create();
             mnageLightDTO = gson.fromJson(elem, MnageLightDTO.class);
+        } catch (JsonIOException | JsonSyntaxException e){
+            log.error(PROBLEM_WITH_CONVERT_INPUT_DATA);
+            log.error(e.toString());
+            throw new ConvertError(PROBLEM_WITH_CONVERT_INPUT_DATA);
+        }
+        return mnageLightDTO;
+    }
+
+    public ManagementDTO convertJsonToManageDTO(MqttMessage request) {
+        ManagementDTO mnageLightDTO;
+        try{
+            String elem =  getId(request);
+            Gson gson  = new GsonBuilder().create();
+            mnageLightDTO = gson.fromJson(elem, ManagementDTO.class);
         } catch (JsonIOException | JsonSyntaxException e){
             log.error(PROBLEM_WITH_CONVERT_INPUT_DATA);
             log.error(e.toString());

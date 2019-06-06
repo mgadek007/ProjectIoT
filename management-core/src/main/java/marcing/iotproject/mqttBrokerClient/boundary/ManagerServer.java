@@ -37,7 +37,7 @@ public class ManagerServer implements MqttCallbackExtended {
 
     private ManageRoom manageRoom = new ManageRoom();
     private DatePreparator dataPreparator = new DatePreparator();
-    private LightManagment li =new LightManagment();
+    private LightAndTempManagment li =new LightAndTempManagment();
 
 
     public ManagerServer(){
@@ -79,7 +79,7 @@ public class ManagerServer implements MqttCallbackExtended {
             DataBlock result = dataPreparator.prepareDataFromMqtt(mqttMessage);
             TRY_SEND_DATA++;
             if (TRY_SEND_DATA == SEND_DATA) {
-                String topic = MessageFormat.format(ConnectionMqttDictionary.APP_TOPIC, mqttMessage);
+                String topic = MessageFormat.format(ConnectionMqttDictionary.APP_TOPIC, result.getId());
                 String resultString = dataPreparator.prepareJson(result);
                 sendData(topic, resultString);
                 TRY_SEND_DATA = 0;

@@ -15,6 +15,7 @@ public class AirConditionChecker {
     private static final double MIN_TEMP_OUT = 13.0;
 
     public ManagementDTO checkAir(DataBlock dataBlock, ManagementDTO managementDTO){
+        managementDTO.setId(dataBlock.getId());
         boolean isSound = converter.checkSound(dataBlock.isSoundDetected());
         boolean isPeopleInsight = converter.isPeopleInsight(dataBlock.getPeopleInside());
         if (isSound && isPeopleInsight)
@@ -22,15 +23,25 @@ public class AirConditionChecker {
             double airOut = converter.convertToDouble(dataBlock.getAirQuaOut());
             double airIn = converter.convertToDouble(dataBlock.getAirQuaIn());
             double tempOut = converter.convertToDouble(dataBlock.getTempOut());
+            double tempIn = converter.convertToDouble(dataBlock.getTempIn());
             if (airOut < NORM_AIR_OUT_CON || tempOut < MIN_TEMP_OUT){
-                managementDTO.setCloseWindow(TRUE);
-                managementDTO.setTurnOnAirCon(TRUE);
-                managementDTO.setSetTempOnAirCon(dataBlock.getTempIn());
+
+                managementDTO.setIsWindowOpen(FALSE);
+                managementDTO.setIsClimeOn(TRUE);
+                managementDTO.setTemp(dataBlock.getTempIn());
+            }else if(tempIn < tempOut || airIn < airOut){
+                managementDTO.setIsClimeOn(FALSE);
+                managementDTO.setIsWindowOpen(TRUE);
+            }else {
+                managementDTO.setIsWindowOpen(converter.convertToBoolean(dataBlock.getIsWindowOpen()));
+                managementDTO.setIsClimeOn(converter.convertToBoolean(dataBlock.getIsClimeOn()));
+                managementDTO.setTemp(dataBlock.getTempIn());
             }
 
+
         }else {
-            managementDTO.setCloseWindow(TRUE);
-            managementDTO.setTurnOnAirCon(FALSE);
+            managementDTO.setIsClimeOn(FALSE);
+            managementDTO.setIsWindowOpen(FALSE);
         }
         return managementDTO;
     }

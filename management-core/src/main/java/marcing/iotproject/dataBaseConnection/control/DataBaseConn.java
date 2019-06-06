@@ -26,6 +26,7 @@ public class DataBaseConn {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             conn = DriverManager.getConnection("jdbc:mysql://" + dbIpAddr + ":3306/sys?serverTimezone=Europe/Warsaw", "root", "root123!");
 
+
         } catch (SQLException e) {
             log.error(PROBLEM_WITH_CONNECTION);
             log.error(e.toString());
