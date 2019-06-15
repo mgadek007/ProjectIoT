@@ -13,6 +13,7 @@ class DataBaseConvert {
 
     private static final String PROBLEM_WITH_CONVERT = " Problem with data From DB";
     private static final String EMPTY_STRING = null;
+    private static final String ID_ROOM = "IdRoom";
 
     private QueryPreparator queryPreparator = new QueryPreparator();
 
@@ -39,6 +40,19 @@ class DataBaseConvert {
             throw new ConvertError(PROBLEM_WITH_CONVERT);
         }
         return result;
+    }
+
+    ArrayList getList(ResultSet result) {
+        ArrayList list = new ArrayList();
+        try {
+            while (result.next()){
+                list.add(result.getString(ID_ROOM));
+            }
+        }catch (SQLException e){
+            throw new ConvertError(PROBLEM_WITH_CONVERT);
+
+        }
+        return list;
     }
 
 }

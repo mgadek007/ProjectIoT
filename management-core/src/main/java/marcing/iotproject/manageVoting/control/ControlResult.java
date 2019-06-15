@@ -26,7 +26,7 @@ public class ControlResult {
     private static final double PROG = 0.6;
     private static final double AIR_PROG = 0.4;
     private static final int CHANGE_TEMP = 1;
-    private static VotingStorage votingStorage= VotingStorage.getInstance();
+    private static VotingStorage votingStorage = VotingStorage.getInstance();
     private Map<String, String> resultMap = new HashMap<>();
     private Map<String, String> finalMap = new HashMap<>();
 

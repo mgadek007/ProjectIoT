@@ -6,12 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseConn {
 
     private final Logger log = LoggerFactory.getLogger(DataBaseConn.class);
     private static final String PROBLEM_WITH_CONNECTION = " Problem with connection to Database";
+    private static final String GET_LIST_FROM_DB = "SELECT IdRoom FROM rooms;";
 
     private DataBaseConvert dataBaseConvert = new DataBaseConvert();
 
@@ -147,7 +149,22 @@ public class DataBaseConn {
         }finally {
             preparedStatement.close();
         }
+    }
 
-
+    public ArrayList getListRoom() throws SQLException{
+        ArrayList list;
+        init();
+        try {
+            statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(GET_LIST_FROM_DB);
+            list = dataBaseConvert.getList(result);
+        }catch (SQLException e){
+            log.error(PROBLEM_WITH_CONNECTION);
+            log.error(e.toString());
+            throw new ConnectionErrorException(PROBLEM_WITH_CONNECTION);
+        }finally {
+            statement.close();
+        }
+        return list;
     }
 }

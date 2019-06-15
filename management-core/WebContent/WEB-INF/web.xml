@@ -22,4 +22,14 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <url-pattern>/preparedata/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ManageVotin</servlet-name>
+        <servlet-class>marcing.iotproject.applyPermisionForVoting.boundary.ApplyPermissionForVoting</servlet-class>
+    </servlet>
+    <!-- servlet mapping -->
+    <servlet-mapping>
+        <servlet-name>ManageVotin</servlet-name>
+        <url-pattern>/applyvoting/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>
